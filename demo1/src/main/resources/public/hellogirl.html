@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>hellogirl</title>
+</head>
+<body>
+        <style>
+            .testdiv{width:100%;border:1px solid #000;Margin:5px;}
+        </style>
+        <div>
+            <span style="color: red;font-size: 100px;">hellogirl</span>
+        </div>
+        <div>
+            <input name="userno" id="userno"/>
+            <button onclick="getUser()">获取用户信息</button>
+        </div>
+        <div style="height: 10px;">
+
+        </div>
+        <div style="color: blue;font-size: 50px;" class="test">
+            <div class="testdiv">用户id：<span></span></div>
+            <div class="testdiv">工号：<span></span></div>
+            <div class="testdiv">姓名：<span></span></div>
+            <div class="testdiv">安全级别：<span></span></div>
+        </div>
+        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script>
+
+
+        function getUser(){
+            var userno=$("#userno").val();
+            var data={};
+            $.ajax({
+                type: "POST",
+                url:"http://192.168.0.217:8081/testBoot/getUser/"+userno,
+                async: false,
+                data:data,
+                success: function(data1) {
+                    $('.test').children().eq(0).children().html(data1.id);
+                    $('.test').children().eq(1).children().html(data1.username);
+                    $('.test').children().eq(2).children().html(data1.realname);
+                    $('.test').children().eq(3).children().html(data1.seclevel);
+                },
+                error: function() {
+                    alert('提交失败！');
+                }
+            });
+        }
+
+
+        $(function () {
+            //alert(getNowFormatDate());
+        })
+        function getNowFormatDate() {
+            var date = new Date();
+            var seperator1 = "-";
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = year + seperator1 + month + seperator1 + strDate;
+            return currentdate;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+server:
+  port: 8012
+
+spring:
+  datasource:
+    username: root
+    password: bestlink2017
+    url: jdbc:mysql://192.168.0.97:3306/jh_project_test?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapping.xml
+  type-aliases-package: com.example.demo1.entity
+
+#showSql
+logging:
+  level:
+    com:
+      example:
+        demo1:
+          mapper: debug

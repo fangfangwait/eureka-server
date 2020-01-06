@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false #关闭缓存
+    prefix: classpath:/public/ #添加路径前缀
